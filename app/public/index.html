@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Go Echo API</title>
+</head>
+<body>
+  <h1>Go Echo API</h1>
+  <p>使用方法: エンドポイントをCURLなどでリクエスト</p>
+
+  <div>
+    <h3>ユーザー登録 POST /signup</h3>
+    <table border="1">
+      <tr>
+      <th>Request</td>
+      <td>curl -X POST (IPアドレス):8080/signup -H "Content-Type: application/json" -d '{"name": "user1", "password": "password"}'</td>
+      </tr>
+      <tr>
+        <th>Resopnse</td>
+        <td>{"id":1,"name":"user1","password":""}</td>
+      </tr>
+    </table>
+  </div> 
+
+  <div>
+    <h3>ログイン POST /login</h3>
+    <table border="1">
+      <tr>
+      <th>Request</td>
+      <td>curl -X POST (IPアドレス):8080/login -H "Content-Type: application/json" -d '{"name": "user1", "password": "password"}'</td>
+      </tr>
+      <tr>
+        <th>Resopnse</td>
+        <td>{"token":"(JWTトークン)"}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div>
+    <h3>todo登録 POST /api/todos</h3>
+    <table border="1">
+      <tr>
+      <th>Request</td>
+      <td>curl -X POST (IPアドレス):8080/api/todos -H "Authorization: Bearer (JWTトークン)" -H "Content-Type: application/json" -d '{"name": "todo1"}'</td>
+      </tr>
+      <tr>
+        <th>Resopnse</td>
+        <td>{"uid":1,"id":1,"name":"todo1","completed":false}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div>
+    <h3>todo一覧取得 GET /api/todos</h3>
+    <table border="1">
+      <tr>
+      <th>Request</td>
+      <td>curl -X GET (IPアドレス):8080/api/todos -H "Authorization: Bearer (JWTトークン)"</td>
+      </tr>
+      <tr>
+        <th>Resopnse</td>
+        <td>[{"uid":1,"id":1,"name":"todo1","completed":false}]</td>
+      </tr>
+    </table>
+  </div>
+
+  <div>
+    <h3>todo更新 PUT /api/todos/:id/completed </h3>
+    <table border="1">
+      <tr>
+      <th>Request</td>
+      <td>curl -X PUT (IPアドレス):8080/api/todos/1/completed -H "Authorization: Bearer (JWTトークン)"</td>
+      </tr>
+      <tr>
+        <th>Resopnse</td>
+        <td>(No Content)</td>
+      </tr>
+    </table>
+  </div>
+
+  <div>
+    <h3>todo削除 DELETE /api/todos/:id </h3>
+    <table border="1">
+      <tr>
+      <th>Request</td>
+      <td>curl -X DELETE (IPアドレス):8080/api/todos/1 -H "Authorization: Bearer (JWTトークン)"</td>
+      </tr>
+      <tr>
+        <th>Resopnse</td>
+        <td>(No Content)</td>
+      </tr>
+    </table>
+  </div>
+
+</body>
+</html>
