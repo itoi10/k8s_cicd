@@ -9,3 +9,5 @@ WORKDIR /go/src/app
 ADD . /go/src/app/
 
 RUN go build *.go
+
+CMD ["./main"]
