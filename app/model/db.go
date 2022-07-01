@@ -18,7 +18,7 @@ func init() {
 	DBMS := "mysql"
 	USER := os.Getenv("MYSQL_USER")
 	PASS := os.Getenv("MYSQL_PASSWORD")
-	HOST := os.Getenv("MYSQL_HOST") // "tcp(mysql:3306)" // mysqlはコンテナ名
+	HOST := os.Getenv("MYSQL_HOST")
 	DBNAME := os.Getenv("MYSQL_DATABASE")
 
 	CONNECT := USER + ":" + PASS + "@tcp(" + HOST + ":3306)/" + DBNAME
