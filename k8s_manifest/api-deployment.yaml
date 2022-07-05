@@ -16,7 +16,7 @@ spec:
         app: api
     spec:
       containers:
-        # ローカルでビルドしたイメージを使用
+        # GitHub Actionsにより自動で更新される
         - image: ghcr.io/itoi10/k8s_cicd:pr-2
           name: goapi-sample
           envFrom:
