@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         # ローカルでビルドしたイメージを使用
-        - image: goapi:1.0
+        - image: ghcr.io/itoi10/k8s_cicd:pr-2
           name: goapi-sample
           envFrom:
             - configMapRef:
