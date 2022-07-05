@@ -16,7 +16,6 @@ spec:
         app: api
     spec:
       containers:
-        # ローカルでビルドしたイメージを使用
         - image: goapi:1.0
           name: goapi-sample
           envFrom:
