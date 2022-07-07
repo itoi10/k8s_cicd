@@ -81,13 +81,9 @@ Gibhub Actionでプルリク時に新しいAPIイメージの生成。マニフ�
 ## CD - ArgoCD -
 
 ### 1. ArgoCDインストール
-1. ネームスペース作成
+ネームスペース作成 インストール
 ```
 kubectl create namespace argocd
-```
-
-2. インストール
-```
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
 
@@ -96,12 +92,12 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath='{.data.password}' | base64 --decode
 ```
 
-ポートフォワード
+ArgoCDポートフォワード
 ```
 kubectl -n argocd port-forward service/argocd-server 30080:80
 ```
 
-ログイン
+ブラウザでログイン
 user: admin
 pass: secretから取得した初期パスワード
 
