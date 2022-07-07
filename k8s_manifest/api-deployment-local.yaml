@@ -16,7 +16,7 @@ spec:
         app: api
     spec:
       containers:
-        - image: goapi:1.0
+        - image: goapi:1.0 # diff ローカルのイメージを指定
           name: goapi-sample
           envFrom:
             - configMapRef:

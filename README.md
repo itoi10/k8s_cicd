@@ -1,6 +1,8 @@
-# k8s 
+# Kubernetes CI CD
 
-appはGoのTodo API
+- GitHub ActionsでPR時にイメージ作成しマニフェスト更新
+- ArgoCDでマニフェストの変更を反映し新しいイメージでデプロイする
+- appはGoのTodo API
 
 localhost →ポードフォワード→ [Goコンテナ(Pod):8080] → [MySQLコンテナ(Pod):3306]
 
@@ -12,6 +14,9 @@ goのDockerfileをビルドしておく
 docker build ./app -t goapi:1.0
 ```
 
+```
+cd ./k8s_manifest/
+```
 
 ### 1. DB
 1. DB用NameSpace作成
@@ -75,10 +80,10 @@ kubectl delete -f namespace/api-namespace.yaml,namespace/mysql-namespace.yaml
 ```
 
 ## CI
-Gibhub Actionでプルリク時に新しいAPIイメージの生成。マニフェスト変更のPR作成
+Gibhub Actionでプルリク時に新しいイメージの生成。マニフェスト変更PR作成
 
 
-## CD - ArgoCD -
+## CD (ArgoCD)
 
 ### 1. ArgoCDインストール
 ネームスペース作成 インストール
@@ -97,7 +102,7 @@ ArgoCDポートフォワード
 kubectl -n argocd port-forward service/argocd-server 30080:80
 ```
 
-ブラウザでログイン
+ブラウザでログイン http://localhost:30080
 user: admin
 pass: secretから取得した初期パスワード
 
@@ -113,10 +118,12 @@ kubectl apply -f argocd/argocd-application-mysql.yaml
 kubectl apply -f argocd/argocd-application-sample-app.yaml
 ```
 
-APIをポートフォワード
+APIをポートフォワード http://localhost:8080
 ```
 kubectl  port-forward service/api 8080:80 
 ```
+
+ArgoCDの画面でRefreshするとGitHubのマニフェストと同期して新しいイメージでデプロイする
 
 ### 3. 削除
 ```
