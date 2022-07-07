@@ -23,7 +23,7 @@ docker build ./api -t goapi:1.0
 ### 1. DB
 1. DB用NameSpace作成
 ```
-kubectl apply -f namespace/mysql-namespace.yaml
+kubectl apply -f mysql/mysql-namespace.yaml
 ```
 
 
@@ -41,7 +41,7 @@ kubectl apply -f mysql/mysql-service.yaml -n database
 
 1. API用NameSpace作成
 ```
-kubectl apply -f namespace/api-namespace.yaml 
+kubectl apply -f api/api-namespace.yaml 
 ```
 
 2. ConfigMap, Secret作成. APIデプロイ
@@ -78,7 +78,7 @@ kubectl delete -f mysql/mysql-deployment.yaml,mysql/mysql-service.yaml -n databa
 
 3. NameSpace削除
 ```
-kubectl delete -f namespace/api-namespace.yaml,namespace/mysql-namespace.yaml
+kubectl delete -f api/api-namespace.yaml,mysql/mysql-namespace.yaml
 ```
 
 ## CD - ArgoCD -
