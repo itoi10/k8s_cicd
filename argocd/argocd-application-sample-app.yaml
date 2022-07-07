@@ -11,7 +11,7 @@ spec:
   # マニフェストを管理しているレポ
   source:
     repoURL: https://github.com/itoi10/k8s_cicd
-    targetRevision: upd-mft # ブランチ名
+    targetRevision: main # ブランチ名
     path: k8s_manifest/api
   # デプロイ先のクラスターとネームスペース
   destination:

@@ -54,11 +54,11 @@ jobs:
     needs: build-and-push-image
     runs-on: ubuntu-latest
     steps:
-      # ※今回は同じリポジトリのupd-mftブランチのマニフェストを変更する
+      # ※今回は同じリポジトリのmainブランチのマニフェストを変更する
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: upd-mft
+          ref: main
 
       - name: Update manifest file
         env:
@@ -74,7 +74,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           title: "Update goapi-sample"
-          base: upd-mft
+          base: main
           draft: true
           body: |
             # Changes
