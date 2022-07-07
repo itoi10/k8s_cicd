@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: test
+  namespace: argocd
+spec:
+  description: test project
+  # 指定のRepo以外からSync不可にできる。*で任意のRepとする
+  sourceRepos:
+    - '*'
+  # デプロイできるクラスターとネームスペースを指定
+  destinations:
+    - namespace: default
+      server: https://kubernetes.default.svc

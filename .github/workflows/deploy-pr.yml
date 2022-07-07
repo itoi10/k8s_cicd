@@ -62,7 +62,7 @@ jobs:
 
       - name: Update manifest file
         env:
-          YAML_PATH: k8s_manifest/api-deployment.yaml
+          YAML_PATH: k8s_manifest/api/api-deployment.yaml
           CONTAINER_NAME: goapi-sample
           IMAGE_FULL_NAME: ${{ needs.build-and-push-image.outputs.tags }} # 前のジョブのoutput参照
         # yqコマンドでyamlファイル書き換え. goapi-sampleコンテナのイメージを更新
