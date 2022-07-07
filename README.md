@@ -1,12 +1,5 @@
 # k8s 
 
-TODO
-
-- [ ] CI - Github Actions 
-
-- [ ] CD - ArgoCD
-
-
 appはGoのTodo API
 
 localhost →ポードフォワード→ [Goコンテナ(Pod):8080] → [MySQLコンテナ(Pod):3306]
@@ -81,6 +74,10 @@ kubectl delete -f mysql/mysql-deployment.yaml,mysql/mysql-service.yaml -n databa
 kubectl delete -f namespace/api-namespace.yaml,namespace/mysql-namespace.yaml
 ```
 
+## CI
+Gibhub Actionでプルリク時に新しいAPIイメージの生成。マニフェスト変更のPR作成
+
+
 ## CD - ArgoCD -
 
 ### 1. ArgoCDインストール
@@ -109,12 +106,27 @@ user: admin
 pass: secretから取得した初期パスワード
 
 ### 2. applicationデプロイ
-1. AppProject作成
+AppProject作成
 ```
 kubectl apply -f argocd/argocd-appproject-test.yaml
 ```
 
-2. Application適用
+Application適用
 ```
+kubectl apply -f argocd/argocd-application-mysql.yaml
 kubectl apply -f argocd/argocd-application-sample-app.yaml
+```
+
+APIをポートフォワード
+```
+kubectl  port-forward service/api 8080:80 
+```
+
+### 3. 削除
+```
+kubectl delete -f argocd/argocd-application-sample-app.yaml
+kubectl delete -f argocd/argocd-application-mysql.yaml
+kubectl delete -f argocd/argocd-appproject-test.yaml
+kubectl delete -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl delete namespace argocd
 ```
