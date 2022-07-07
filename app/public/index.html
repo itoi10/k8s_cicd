@@ -7,7 +7,7 @@
   <title>Go Echo API</title>
 </head>
 <body>
-  <h1><span class="go">=Go</span> Echo API</h1>
+  <h1><span class="go">=Go</span> REST API</h1>
   <p>使用方法: エンドポイントをCURLなどでリクエスト</p>
 
   <div>
@@ -15,7 +15,7 @@
     <table border="1">
       <tr>
       <th>Request</td>
-      <td>curl -X POST (IPアドレス):8080/signup -H "Content-Type: application/json" -d '{"name": "user1", "password": "password"}'</td>
+      <td>curl -X POST localhost:8080/signup -H "Content-Type: application/json" -d '{"name": "user1", "password": "password"}'</td>
       </tr>
       <tr>
         <th>Resopnse</td>
@@ -29,7 +29,7 @@
     <table border="1">
       <tr>
       <th>Request</td>
-      <td>curl -X POST (IPアドレス):8080/login -H "Content-Type: application/json" -d '{"name": "user1", "password": "password"}'</td>
+      <td>curl -X POST localhost:8080/login -H "Content-Type: application/json" -d '{"name": "user1", "password": "password"}'</td>
       </tr>
       <tr>
         <th>Resopnse</td>
@@ -43,7 +43,7 @@
     <table border="1">
       <tr>
       <th>Request</td>
-      <td>curl -X POST (IPアドレス):8080/api/todos -H "Authorization: Bearer (JWTトークン)" -H "Content-Type: application/json" -d '{"name": "todo1"}'</td>
+      <td>curl -X POST localhost:8080/api/todos -H "Authorization: Bearer (JWTトークン)" -H "Content-Type: application/json" -d '{"name": "todo1"}'</td>
       </tr>
       <tr>
         <th>Resopnse</td>
@@ -57,7 +57,7 @@
     <table border="1">
       <tr>
       <th>Request</td>
-      <td>curl -X GET (IPアドレス):8080/api/todos -H "Authorization: Bearer (JWTトークン)"</td>
+      <td>curl -X GET localhost:8080/api/todos -H "Authorization: Bearer (JWTトークン)"</td>
       </tr>
       <tr>
         <th>Resopnse</td>
@@ -71,7 +71,7 @@
     <table border="1">
       <tr>
       <th>Request</td>
-      <td>curl -X PUT (IPアドレス):8080/api/todos/1/completed -H "Authorization: Bearer (JWTトークン)"</td>
+      <td>curl -X PUT localhost:8080/api/todos/1/completed -H "Authorization: Bearer (JWTトークン)"</td>
       </tr>
       <tr>
         <th>Resopnse</td>
@@ -85,7 +85,7 @@
     <table border="1">
       <tr>
       <th>Request</td>
-      <td>curl -X DELETE (IPアドレス):8080/api/todos/1 -H "Authorization: Bearer (JWTトークン)"</td>
+      <td>curl -X DELETE localhost:8080/api/todos/1 -H "Authorization: Bearer (JWTトークン)"</td>
       </tr>
       <tr>
         <th>Resopnse</td>
