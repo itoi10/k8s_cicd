@@ -1,7 +1,7 @@
 apiVersion: v1
 data:
   MYSQL_DATABASE: test_db
-  MYSQL_HOST: mysql.database.svc.cluster.local
+  MYSQL_HOST: mysql.database.svc.cluster.local # diff
   MYSQL_USER: sample_app
 kind: ConfigMap
 metadata:
