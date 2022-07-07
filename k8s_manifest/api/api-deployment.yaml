@@ -16,7 +16,7 @@ spec:
         app: api
     spec:
       containers:
-        - image: ghcr.io/itoi10/k8s_cicd:pr-9
+        - image: ghcr.io/itoi10/k8s_cicd:pr-11
           name: goapi-sample
           envFrom:
             - configMapRef:
