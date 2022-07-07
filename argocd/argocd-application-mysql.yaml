@@ -1,19 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: sample-app
+  name: mysql
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  # 所属させたいAppプロジェクト名
   project: test
-  # マニフェストを管理しているレポ
   source:
     repoURL: https://github.com/itoi10/k8s_cicd
-    targetRevision: main # ブランチ名
-    path: k8s_manifest/api
-  # デプロイ先のクラスターとネームスペース
+    targetRevision: main
+    path: k8s_manifest/mysql
   destination:
     server: https://kubernetes.default.svc
     namespace: default

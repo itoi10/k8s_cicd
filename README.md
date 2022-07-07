@@ -11,19 +11,19 @@ appはGoのTodo API
 
 localhost →ポードフォワード→ [Goコンテナ(Pod):8080] → [MySQLコンテナ(Pod):3306]
 
-## k8s適用手順
+## k8s適用手順(ローカル DockerDesktop)
 
 goのDockerfileをビルドしておく
 
 ```
-docker build ./api -t goapi:1.0
+docker build ./app -t goapi:1.0
 ```
 
 
 ### 1. DB
 1. DB用NameSpace作成
 ```
-kubectl apply -f mysql/mysql-namespace.yaml
+kubectl apply -f namespace/mysql-namespace.yaml
 ```
 
 
@@ -41,12 +41,12 @@ kubectl apply -f mysql/mysql-service.yaml -n database
 
 1. API用NameSpace作成
 ```
-kubectl apply -f api/api-namespace.yaml 
+kubectl apply -f namespace/api-namespace.yaml 
 ```
 
 2. ConfigMap, Secret作成. APIデプロイ
 ```
-kubectl apply -f api-deployment-local.yaml,api/api-configmap.yaml,api/api-secret.yaml -n api
+kubectl apply -f api-deployment-local.yaml,api-configmap-local.yaml,api/api-secret.yaml -n api
 ```
 
 3. サービス作成
@@ -68,7 +68,7 @@ $ curl http://localhost:8080
 ### 4. リソース削除
 1. API削除
 ```
-kubectl delete -f api/api-deployment-local.yaml,api/api-configmap.yaml,api/api-secret.yaml,api/api-service.yaml -n api
+kubectl delete -f api-deployment-local.yaml,api-configmap-local.yaml,api/api-secret.yaml,api/api-service.yaml -n api
 ```
 
 2. DB削除
@@ -78,7 +78,7 @@ kubectl delete -f mysql/mysql-deployment.yaml,mysql/mysql-service.yaml -n databa
 
 3. NameSpace削除
 ```
-kubectl delete -f api/api-namespace.yaml,mysql/mysql-namespace.yaml
+kubectl delete -f namespace/api-namespace.yaml,namespace/mysql-namespace.yaml
 ```
 
 ## CD - ArgoCD -
